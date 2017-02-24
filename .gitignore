@@ -21,6 +21,7 @@
 /node_modules
 
 notes.md
+.env
 # React on Rails
 npm-debug.log*
 node_modules

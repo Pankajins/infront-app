@@ -20,6 +20,8 @@ gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', github: "rails/webpacker"
 gem 'react_on_rails', '~> 6.6'
+gem 'dotenv', '~> 2.2'
+gem 'aws-sdk', '~> 2.7', '>= 2.7.14'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
