@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Annyang from 'annyang';
 import 'webrtc-adapter';
+import Particles from './Particles';
 
 export default class InFront extends React.Component {
 
@@ -26,18 +27,18 @@ export default class InFront extends React.Component {
     });
     Annyang.debug(true);
     Annyang.start();
+
+    const particles = new Particles(this.particles_container);
   }
 
   capture() {
     const constraints = {
-        video: {
-          facingMode: 'environment'
-        }
+      video: {
+        facingMode: 'environment'
+      }
     }
 
     navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-      /* use the stream */
-
       const video = document.createElement('video');
       video.setAttribute('width', 640);
       video.setAttribute('height', 480);
@@ -87,11 +88,15 @@ export default class InFront extends React.Component {
   render() {
     return (
       <div>
-        <p>Hi</p>
-        <button onClick={this.capture.bind(this)}>capture</button>
-        {this.state.image ? <img src={this.state.image} alt="image"/> : ''}
-        {this.renderLabels()}
+        <div className="particles" ref={(input) => {this.particles_container = input}}></div>
+        <div>
+          <p>Hi</p>
+          <button onClick={this.capture.bind(this)}>capture</button>
+          {this.state.image ? <img src={this.state.image} alt="image"/> : ''}
+          {this.renderLabels()}
+        </div>
       </div>
+
     );
   }
 
