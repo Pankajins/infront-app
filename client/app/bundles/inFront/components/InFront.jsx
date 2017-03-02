@@ -24,6 +24,7 @@ export default class InFront extends React.Component {
         this.capture();
       }
     });
+    Annyang.debug(true);
     Annyang.start();
   }
 
