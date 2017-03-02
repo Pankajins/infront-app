@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Annyang from 'annyang';
+import 'webrtc-adapter';
 
 export default class InFront extends React.Component {
 
