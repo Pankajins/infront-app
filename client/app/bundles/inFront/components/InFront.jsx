@@ -86,7 +86,19 @@ export default class InFront extends React.Component {
       this.setState({
         labels: data['labels']
       });
+      this.speakLabels(data.labels);
     });
+  }
+
+  speakLabels(labels) {
+    if (window.speechSynthesis) {
+      labels.forEach((label, i) => {
+        setTimeout(() => {
+          const text = new SpeechSynthesisUtterance(label);
+          window.speechSynthesis.speak(text);
+        }, 500 * i);
+      });
+    }
   }
 
   render() {
