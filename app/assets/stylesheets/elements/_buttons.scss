@@ -1,0 +1,12 @@
+button {
+  background-color: #F05D5E;
+  border: 1px solid #F05D5E;
+  outline: 0;
+  padding: $padding-button;
+  color: #fff;
+
+  &:hover {
+    background-color: #9068BE;
+    border: 1px solid #9068BE;
+  }
+}

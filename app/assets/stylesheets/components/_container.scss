@@ -1,0 +1,9 @@
+.container {
+  border: 1px solid #F40076;
+  margin: $padding;
+  min-height: calc(100vh - #{$padding * 2});
+  min-width: calc(100vw - #{$padding * 2});
+  padding: $padding;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.5);
+}

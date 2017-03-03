@@ -53,7 +53,7 @@ export default class Particles {
 
   initParticles() {
     this.geometry = new THREE.Geometry();
-    this.numParticles = 3000;
+    this.numParticles = 1500;
     this.particleVariations = [
       {hsl: [1.00, 1, 0.5], size: 5},
       {hsl: [0.95, 1, 0.5], size: 4},

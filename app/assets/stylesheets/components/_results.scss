@@ -1,0 +1,29 @@
+.results {
+  padding-bottom: #{$padding * 3};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  img {
+    max-width: 80%;
+    padding-top: $padding;
+    padding-bottom: $padding;
+  }
+
+  .labels {
+    max-width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: $padding;
+  }
+
+  li {
+    padding: 10px;
+    color: #696D7D;
+  }
+
+
+}
