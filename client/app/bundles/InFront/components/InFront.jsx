@@ -107,7 +107,7 @@ export default class InFront extends React.Component {
           <div className="cta">
             <button className="capture" onClick={this.capture.bind(this)}>CAPTURE</button>
             <p className="warning">This is a highly experimental demo</p>
-            <p className="warning">Exclusive for Google Chrome and Android devices</p>
+            <p className="warning">Exclusive for Google Chrome and some Android devices</p>
           </div>
         </div>
       </div>
