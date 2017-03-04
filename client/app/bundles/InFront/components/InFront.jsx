@@ -29,14 +29,17 @@ export default class InFront extends React.Component {
     Annyang.debug(true);
     Annyang.start();
 
+    // Instantiate the particles class
     const particles = new Particles(this.particles_container);
 
+    // Howler is used to play an initial audio message
     const audio = new Howl({
       src: ['audio.mp3']
     });
     audio.play();
   }
 
+  // The capture function takes a picture, makes it a video that is placed into a canvas which is displayed on the screen and posted to rails
   capture() {
     const constraints = {
       video: {
@@ -49,6 +52,7 @@ export default class InFront extends React.Component {
       video.srcObject = stream;
       video.play();
 
+      // Video needs time to play first before an image is captured, this required a timeout.
       video.addEventListener('playing', () => {
         setTimeout(() => {
           const canvas = document.createElement('canvas');
@@ -73,6 +77,7 @@ export default class InFront extends React.Component {
     });
   }
 
+  // Posts data (img) from React to Rails: gets response, then calls the speakLabels function which pronounces the results coming from Amazon Rekognition
   postImage(image) {
     fetch('/detections', {
       method: 'post',
@@ -101,10 +106,10 @@ export default class InFront extends React.Component {
     }
   }
 
+  // All components have a render function whose function is to return HTML which is injected into the index.html file (which is just a container for the html produced by the React components)
   render() {
     return (
       <div>
-
         <div className="particles" ref={(input) => {this.particles_container = input}}></div>
         <div className="container">
           <header>
@@ -123,10 +128,10 @@ export default class InFront extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 
+  // Basically if there's no labels nothing is returned. If there are labels, it creates an array of li tags which are then placed into a ul tag and returned. 
   renderLabels() {
     if (!this.state.labels) {
       return null;

@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 
+// Create a Particles constructor that will be instantiated within InFront.jsx
 export default class Particles {
   constructor(container) {
+    // Defining all required variables
     this.container = container;
     this.mouseX = 0;
     this.mouseY = 0;
@@ -12,6 +14,7 @@ export default class Particles {
     this.initParticles();
     this.loop();
 
+    // Adding required event listeners. Functions are placed at the bottom of the file
     window.addEventListener('resize', () => this.handleResize(), false);
     document.addEventListener('mousemove', (e) => this.handleMouseMove(e), false);
     document.addEventListener('touchstart', (e) => this.handleResize(e), false);
@@ -26,6 +29,7 @@ export default class Particles {
     return window.innerHeight;
   }
 
+  // The init function is used in three.js to define the basic elements of the scene
   init() {
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, this.width() / this.height(), 1, 3000);
@@ -42,6 +46,7 @@ export default class Particles {
     this.container.appendChild(this.renderer.domElement);
   }
 
+  // Scene is not visible without lights.
   addLights() {
     const light = new THREE.AmbientLight(0xB2EBF2, 0.7);
     this.scene.add(light);
@@ -51,6 +56,7 @@ export default class Particles {
     this.scene.fog = new THREE.FogExp2(0x000000, 0.0007);
   }
 
+  // initParticles creates a basic geometry to which vertices are ultimately added in order to create an actual particle. In this case, there will be 1500 particles in the scene, all of which have a different hue and a different size
   initParticles() {
     this.geometry = new THREE.Geometry();
     this.numParticles = 1500;
@@ -66,6 +72,7 @@ export default class Particles {
     this.addParticles();
   }
 
+  // Vertices create the ultimate shape. Each vertex is a point. The vertices are pushed to the geometry.vertices to create the actual shape
   createParticleVertices() {
     for (let i = 0; i < this.numParticles; i++) {
       let vertex = new THREE.Vector3();
@@ -77,6 +84,7 @@ export default class Particles {
     }
   }
 
+  // The points material uses the size to rasterize an element. A 'Point' is a particle to which you need to pass a geometry (all the vertices together that created a shape) and a material (which in this case is an hsl colour). Each particle in 3d moves 3 planes: x, y, z. Here I'm setting the rotation of the particles to be based on a random number between 0 and 6.28 (this is in radiants but it actually means 360degrees)
   addParticles() {
     for (let i = 0; i < this.particleVariations.length; i++) {
       this.materials[i] = new THREE.PointsMaterial({
@@ -93,6 +101,7 @@ export default class Particles {
     }
   }
 
+  // Updating renderer and camera on resize
   handleResize() {
     this.renderer.setSize(this.width(), this.height());
     this.camera.aspect = this.width() / this.height();
@@ -118,6 +127,7 @@ export default class Particles {
     });
   }
 
+  // The camera is updated based on the position of the mouse. Particles rotate based on the time, and particles' color is changed based on the time as well
   render() {
     const time = Date.now() * 0.00005; // Avoid rotating too fast
 
