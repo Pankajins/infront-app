@@ -56,7 +56,9 @@ export default class Particles {
     this.scene.fog = new THREE.FogExp2(0x000000, 0.0007);
   }
 
-  // initParticles creates a basic geometry to which vertices are ultimately added in order to create an actual particle. In this case, there will be 1500 particles in the scene, all of which have a different hue and a different size
+  // initParticles creates a basic geometry to which vertices are ultimately
+  // added in order to create an actual particle. In this case, there will be 1500
+  // particles in the scene, all of which have a different hue and a different size
   initParticles() {
     this.geometry = new THREE.Geometry();
     this.numParticles = 1500;
@@ -72,7 +74,8 @@ export default class Particles {
     this.addParticles();
   }
 
-  // Vertices create the ultimate shape. Each vertex is a point. The vertices are pushed to the geometry.vertices to create the actual shape
+  // Vertices create the ultimate shape. Each vertex is a point. The vertices
+  // are pushed to the geometry vertices to create the actual shape
   createParticleVertices() {
     for (let i = 0; i < this.numParticles; i++) {
       let vertex = new THREE.Vector3();
@@ -142,6 +145,7 @@ export default class Particles {
       }
     });
 
+    // copied this func from somewhere. Dont remember where. Sorry 🙄
     this.materials.forEach((material, i) => {
       const hsl = this.particleVariations[i].hsl;
       const hue = (360 * (hsl[0] + time) % 360) / 360;

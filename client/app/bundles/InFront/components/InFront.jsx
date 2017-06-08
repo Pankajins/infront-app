@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Annyang from 'annyang';
+// polyfill: handles constraints for getUserMedia API
 import 'webrtc-adapter';
 import Particles from './Particles';
 import {Howl} from 'howler';
@@ -39,7 +40,8 @@ export default class InFront extends React.Component {
     audio.play();
   }
 
-  // The capture function takes a picture, makes it a video that is placed into a canvas which is displayed on the screen and posted to rails
+  // The capture function takes a picture, makes it a video that is
+  // placed into a canvas which is displayed on the screen and posted to rails
   capture() {
     const constraints = {
       video: {
@@ -52,7 +54,6 @@ export default class InFront extends React.Component {
       video.srcObject = stream;
       video.play();
 
-      // Video needs time to play first before an image is captured, this required a timeout.
       video.addEventListener('playing', () => {
         setTimeout(() => {
           const canvas = document.createElement('canvas');
@@ -77,7 +78,8 @@ export default class InFront extends React.Component {
     });
   }
 
-  // Posts data (img) from React to Rails: gets response, then calls the speakLabels function which pronounces the results coming from Amazon Rekognition
+  // Posts data (img) from React to Rails: gets response, then calls the
+  //speakLabels function which pronounces the results coming from Amazon Rekognition
   postImage(image) {
     fetch('/detections', {
       method: 'post',
@@ -131,7 +133,7 @@ export default class InFront extends React.Component {
     );
   }
 
-  // Basically if there's no labels nothing is returned. If there are labels, it creates an array of li tags which are then placed into a ul tag and returned. 
+  // If there's no labels nothing is returned. If there are labels, it creates an array of li tags which are then placed into a ul tag and returned.
   renderLabels() {
     if (!this.state.labels) {
       return null;
